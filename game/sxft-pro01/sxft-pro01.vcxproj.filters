@@ -16,6 +16,9 @@
     <Filter Include="dm">
       <UniqueIdentifier>{f0e68323-030c-40a6-915d-fc1f16f737b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="WishScript">
+      <UniqueIdentifier>{126b32f8-97b8-4320-bf4e-bcdeac02c4bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sxft-pro01.h">
@@ -33,6 +36,9 @@
     <ClInclude Include="Resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="WishScript.h">
+      <Filter>WishScript</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sxft-pro01.cpp">
@@ -40,6 +46,9 @@
     </ClCompile>
     <ClCompile Include="dm\obj.cpp">
       <Filter>dm</Filter>
+    </ClCompile>
+    <ClCompile Include="WishScript.cpp">
+      <Filter>WishScript</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -148,10 +148,12 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="sxft-pro01.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="WishScript.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dm\obj.cpp" />
     <ClCompile Include="sxft-pro01.cpp" />
+    <ClCompile Include="WishScript.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="sxft-pro01.rc" />
