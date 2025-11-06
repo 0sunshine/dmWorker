@@ -19,6 +19,9 @@
     <Filter Include="WishScript">
       <UniqueIdentifier>{126b32f8-97b8-4320-bf4e-bcdeac02c4bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Boss">
+      <UniqueIdentifier>{4d511d09-0f7a-4688-8bb0-3df3108751fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sxft-pro01.h">
@@ -39,6 +42,12 @@
     <ClInclude Include="WishScript.h">
       <Filter>WishScript</Filter>
     </ClInclude>
+    <ClInclude Include="DuoLuoTe.h">
+      <Filter>Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sxft-pro01.cpp">
@@ -49,6 +58,12 @@
     </ClCompile>
     <ClCompile Include="WishScript.cpp">
       <Filter>WishScript</Filter>
+    </ClCompile>
+    <ClCompile Include="DuoLuoTe.cpp">
+      <Filter>Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="util.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

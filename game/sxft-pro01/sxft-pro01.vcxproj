@@ -74,6 +74,16 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ReferencePath>$(ReferencePath)</ReferencePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\software\vcpkg\installed\x86-windows\include\opencv4;E:\software\vcpkg\installed\x86-windows\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ReferencePath>E:\software\vcpkg\installed\x86-windows-static\lib;$(ReferencePath)</ReferencePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\software\vcpkg\installed\x86-windows-static\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -83,10 +93,13 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>E:\software\vcpkg\installed\x86-windows\debug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>boost_process-vc143-mt-gd-x32-1_88.lib;boost_filesystem-vc143-mt-gd-x32-1_88.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -144,15 +157,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="dm\obj.h" />
+    <ClInclude Include="DuoLuoTe.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="sxft-pro01.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="util.h" />
     <ClInclude Include="WishScript.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dm\obj.cpp" />
+    <ClCompile Include="DuoLuoTe.cpp" />
     <ClCompile Include="sxft-pro01.cpp" />
+    <ClCompile Include="util.cpp" />
     <ClCompile Include="WishScript.cpp" />
   </ItemGroup>
   <ItemGroup>
