@@ -132,3 +132,13 @@ std::optional<Point> GetCurrPos(dmsoft* dm)
     return std::nullopt;
 }
 
+void DiffClock::Update()
+{
+    _lastPt = std::chrono::steady_clock::now();
+}
+
+int64_t DiffClock::DiffWithLastMs()
+{
+    auto curr = std::chrono::steady_clock::now();
+    return std::chrono::duration_cast<std::chrono::milliseconds>(curr - _lastPt).count();
+}
