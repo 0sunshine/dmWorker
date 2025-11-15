@@ -5,6 +5,20 @@
 #include <optional>
 #include <chrono>
 
+
+
+
+
+
+struct Config
+{
+    std::string strPaddleOCRPath;
+};
+
+extern Config g_Config;
+
+void LoadConfig();
+
 struct Point
 {
     int x = -1;

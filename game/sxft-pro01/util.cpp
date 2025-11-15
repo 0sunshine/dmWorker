@@ -7,15 +7,27 @@
 #include <opencv2/opencv.hpp>
 #include <filesystem>
 #include <regex>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/ini_parser.hpp>
 
 namespace asio = boost::asio;
 namespace process = boost::process;
 
+Config g_Config;
+
+void LoadConfig()
+{
+    boost::property_tree::ptree tree;
+    boost::property_tree::read_ini("config.ini", tree);
+
+
+    g_Config.strPaddleOCRPath = tree.get<std::string>("OCR.PaddleOCRPath");
+}
+
 std::optional<Point> GetCurrPos(dmsoft* dm)
 {   
-    std::filesystem::path bmpPath = "E:\\code\\dmWorker\\game\\sxft-pro01";
 
-    std::string strCoordinate = (bmpPath / "coordinate.bmp").string();
+    std::string strCoordinate = "coordinate.bmp";
 
 
     long dm_ret = dm->Capture(1140, 130, 1230, 155, strCoordinate.c_str());
@@ -61,7 +73,7 @@ std::optional<Point> GetCurrPos(dmsoft* dm)
 
     try
     {
-        std::string ocrPath = "E:\\code\\dmWorker\\PaddleOCR-json_v1.4.1";
+        std::string ocrPath = g_Config.strPaddleOCRPath;
         boost::process::process  proc(ctx, std::format("{}\\PaddleOCR-json.exe", ocrPath), { std::format("-models_path={}\\models", ocrPath) ,std::format("-image_path={}", strCoordinate)},
             boost::process::process_stdio{ {}, {rp}, nullptr });
 

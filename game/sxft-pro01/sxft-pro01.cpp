@@ -152,6 +152,10 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam) {
 
 int main()
 {
+    srand(102400);
+
+    LoadConfig();
+
     // 安装全局键盘钩子
     HHOOK hHook = SetWindowsHookExW(WH_KEYBOARD_LL, KeyboardProc, GetModuleHandleW(NULL), 0);
     if (!hHook) {

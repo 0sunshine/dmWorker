@@ -47,9 +47,14 @@ void DuoLuoTe::doit()
     while (true)
     {
         //CheckAndUseSkill2();
+        if (_moveClock.DiffWithLastMs() > 120000) //卡在某个位置了
+        {
+            GoToNextPos();
+            std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+        }
 
         std::cout << std::format("try AiYoloDetectObjects") << std::endl;
-        std::string strObjs = _dm->AiYoloDetectObjects(0, 0, 2000, 2000, 0.8, 0.5).GetString();
+        std::string strObjs = _dm->AiYoloDetectObjects(0, 0, 2000, 2000, 0.5, 0.5).GetString();
         std::cout << std::format("AiYoloDetectObjects: {}", strObjs) << std::endl;
 
         std::vector<std::string> vecObjs;
@@ -97,6 +102,7 @@ void DuoLuoTe::doit()
         else if(yoloDedectClock.DiffWithLastMs() > 5000) //移动
         {
              GoToNextPos();
+             //std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
 
 
@@ -143,11 +149,11 @@ static std::vector<Point> track = {
 
 void DuoLuoTe::GoToNextPos()
 {
-    if (_currPos.x < 0)
-    {
-        _currPos = track.front();
-        ++_currRunCount;
-    }
+    //if (_currPos.x < 0)
+    //{
+    //    _currPos = track.front();
+    //    ++_currRunCount;
+    //}
 
     //auto pos = GetCurrPos(_dm);
     //if (!pos)
@@ -164,15 +170,28 @@ void DuoLuoTe::GoToNextPos()
     //    _currPos = track[_currRunCount % track.size()];
     //}
 
-    if (_moveClock.DiffWithLastMs() > 30000)
+    if (_currPos.x < 0 || _moveClock.DiffWithLastMs() > 30000)
     {
         //_currPos = track[rand() % track.size()];
-        _currPos = track[_currRunCount++ % track.size()];
+        //_currPos = track[_currRunCount++ % track.size()];
+
+
+        //随机选点 （279，308）- （1002，697）
+
+        //
+        _currPos.x = rand() % (1002 - 279) + 279;
+        _currPos.y = rand() % (697 - 308) + 308;
+
+        //_currPos.x = 348;
+        //_currPos.y = 352;
+
+        std::cout << std::format("rand move to ({},{})", _currPos.x, _currPos.y) << std::endl;
+
         _moveClock.Update();
     }
    
 
-    //std::cout << std::format("diff pos: ({},{}),  try move to ({},{})", diffX, diffY, _currPos.x, _currPos.y) << std::endl;
+    std::cout << std::format("try move to ({},{})", _currPos.x, _currPos.y) << std::endl;
     MoveToPos(_currPos);
 }
 
@@ -231,7 +250,13 @@ void DuoLuoTe::EnableAutoFightMode()
 
 bool DuoLuoTe::IsMapDescFound()
 {
-    std::string bmpPath = "E:\\code\\dmWorker\\game\\sxft-pro01\\icon\\mapDesc.bmp";
+    _dm->MoveTo(0, 0);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+    _dm->MoveTo(0, 0);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+    std::string bmpPath = "icon\\mapDesc.bmp";
     long x = 0, y = 0;
     int ret = _dm->AiFindPic(250, 290, 420, 330, bmpPath.c_str(), 0.9, 0, &x, &y);
 
@@ -290,7 +315,7 @@ std::optional<Point> DuoLuoTe::IsAutoFightUIFound()
 
     _dm->MoveTo(0, 0);
     
-    std::string bmpPath = "E:\\code\\dmWorker\\game\\sxft-pro01\\icon\\auto_fight_btn.bmp";
+    std::string bmpPath = "icon\\auto_fight_btn.bmp";
     long x = 0, y = 0;
     int ret = _dm->AiFindPic(0, 200, 1000, 650, bmpPath.c_str(), 0.9, 0, &x, &y);
 
