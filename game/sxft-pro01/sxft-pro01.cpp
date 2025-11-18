@@ -13,6 +13,7 @@
 #include <sstream>
 #include <thread>
 #include "DuoLuoTe.h"
+#include "ShopBuy.h"
 
 CWinApp theApp;
 
@@ -64,7 +65,7 @@ int subDM()
         CString strTmp;
         do
         {
-            strTmp = strPids.Tokenize("|", iStartPos);
+            strTmp = strPids.Tokenize(",", iStartPos);
             if (strTmp.IsEmpty())
             {
                 break;
@@ -85,10 +86,21 @@ int subDM()
 
 
         CString windows = dm->EnumWindowByProcessId(pid, "", "", 16);
-        std::cout << std::format("windows: {}", pid, windows.GetString()) << std::endl;
-
-
         long hWnd = Str2Num<long>(windows);
+        CString titles = dm->GetWindowTitle(hWnd);
+
+        std::cout << std::format("windows title: {}", titles.GetString()) << std::endl;
+
+        const char* wantTitle = "02";
+
+        if (titles.Find(wantTitle) < 0)
+        {
+            std::cout << std::format("wanna title: {}, skip this", wantTitle) << std::endl;
+            continue;
+        }
+
+
+
         dm_ret = dm->BindWindowEx(hWnd, "gdi", "normal", "normal", "", 0);
         if (dm_ret <= 0)
         {
@@ -127,8 +139,13 @@ int subDM()
         //    std::this_thread::sleep_for(std::chrono::milliseconds(11000));
         //}
 
-        DuoLuoTe duoLuoTe(dm, hWnd);
-        duoLuoTe.doit();
+        //DuoLuoTe duoLuoTe(dm, hWnd);
+        //duoLuoTe.doit();
+
+        ShopBuy shopBuy(dm, hWnd);
+        shopBuy.doit();
+
+        break;
     }
 
     return 0;

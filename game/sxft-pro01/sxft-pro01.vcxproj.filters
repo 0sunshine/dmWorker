@@ -22,6 +22,9 @@
     <Filter Include="Boss">
       <UniqueIdentifier>{4d511d09-0f7a-4688-8bb0-3df3108751fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shop">
+      <UniqueIdentifier>{918d6fca-2d4a-40a8-b829-dd6e6a5c2d6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sxft-pro01.h">
@@ -48,6 +51,9 @@
     <ClInclude Include="util.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ShopBuy.h">
+      <Filter>Shop</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sxft-pro01.cpp">
@@ -64,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="util.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ShopBuy.cpp">
+      <Filter>Shop</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

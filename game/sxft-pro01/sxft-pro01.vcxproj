@@ -160,6 +160,7 @@
     <ClInclude Include="DuoLuoTe.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="ShopBuy.h" />
     <ClInclude Include="sxft-pro01.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="util.h" />
@@ -168,6 +169,7 @@
   <ItemGroup>
     <ClCompile Include="dm\obj.cpp" />
     <ClCompile Include="DuoLuoTe.cpp" />
+    <ClCompile Include="ShopBuy.cpp" />
     <ClCompile Include="sxft-pro01.cpp" />
     <ClCompile Include="util.cpp" />
     <ClCompile Include="WishScript.cpp" />
